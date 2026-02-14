@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Web Authentication - Rust Cookbook</title>
+        <title>Tracing Messages - Rust Cookbook</title>
 
 
         <!-- Custom HTML head -->
@@ -130,7 +130,7 @@
                         <a href="https://github.com/rust-lang-nursery/rust-cookbook" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/rust-lang-nursery/rust-cookbook/edit/master/src/web/clients/authentication.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/rust-lang-nursery/rust-cookbook/edit/master/src/development_tools/debugging/tracing.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -159,28 +159,54 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="authentication"><a class="header" href="#authentication">Authentication</a></h1>
-<h2 id="basic-authentication"><a class="header" href="#basic-authentication">Basic Authentication</a></h2>
-<p><a href="https://docs.rs/reqwest/"><img src="https://img.shields.io/crates/v/reqwest.svg?label=reqwest" alt="reqwest-badge" /></a> <a href="https://crates.io/categories/network-programming"><img src="https://img.shields.io/badge/net--x.svg?style=social" alt="cat-net-badge" /></a></p>
-<p>Uses <a href="https://docs.rs/reqwest/*/reqwest/struct.RequestBuilder.html#method.basic_auth"><code>reqwest::RequestBuilder::basic_auth</code></a> to perform a basic HTTP authentication.</p>
-<pre><pre class="playground"><code class="language-rust edition2018 no_run">use reqwest::blocking::Client;
-use reqwest::Error;
+                        <h1 id="tracing"><a class="header" href="#tracing">Tracing</a></h1>
+<p><a href="https://crates.io/crates/tracing"><code>tracing</code></a> is a framework for instrumenting Rust programs to
+collect structured, event-based diagnostic information. It is alternative to the older
+<a href="https://crates.io/crates/log"><code>log</code></a> crate and has adapters to be backwards compatible.</p>
+<p>To enable tracing in your application, add the following crates to your project:</p>
+<pre><code class="language-shell">cargo add tracing tracing-subscriber
+</code></pre>
+<p>For libraries, tracing-subscriber is usually not required.</p>
+<h2 id="log-messages-to-the-console"><a class="header" href="#log-messages-to-the-console">Log messages to the console</a></h2>
+<p><a href="https://docs.rs/tracing/"><img src="https://badge-cache.kominick.com/crates/v/tracing.svg?label=tracing" alt="tracing-badge" /></a> <a href="https://docs.rs/tracing-subscriber/"><img src="https://badge-cache.kominick.com/crates/v/tracing-subscriber.svg?label=tracing-subscriber" alt="tracing-subscriber-badge" /></a> <a href="https://crates.io/categories/debugging"><img src="https://img.shields.io/badge/debugging--x.svg?style=social" alt="cat-debugging-badge" /></a></p>
+<p>The <code>tracing</code> crate provides macros to emit log events to a tracing subscriber. The
+<code>tracing-subscriber</code> crate configures where to send the events. To install the default tracing
+subscriber, call <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/fmt/fn.init.html"><code>tracing_subscriber::fmt::init()</code></a>.</p>
+<pre><pre class="playground"><code class="language-rust edition2018">use tracing::{debug, error, info, trace, warn};
 
-fn main() -&gt; Result&lt;(), Error&gt; {
-    let client = Client::new();
+fn main() {
+    tracing_subscriber::fmt::init();
 
-    let user_name = "testuser".to_string();
-    let password: Option&lt;String&gt; = None;
+    error!("This is an error!");
+    warn!("This is a warning.");
+    info!("This is an informational message.");
 
-    let response = client
-        .get("https://httpbin.org/")
-        .basic_auth(user_name, password)
-        .send();
+    // with the default configuration, debug! and trace! messages are not shown
+    debug!("This is a debug message.");
+    trace!("This is a trace message.");
+}
 
-    println!("{:?}", response);
-
-    Ok(())
+#[test]
+fn test_main() {
+    main();
 }</code></pre></pre>
+<p>The default log level is <code>INFO</code>. Tracing will drop events logged at lower levels. Running this code
+prints the following to the console:</p>
+<!-- 
+    Generated using https://crates.io/crates/to-html, running:
+    RUST_LOG=trace to-html --no-prompt  "cargo run --quiet --example=tracing-console
+-->
+<pre class="terminal"><code><span style='opacity:0.67'>2024-12-01T07:56:14.778440Z</span> <span style='color:var(--red,#a00)'>ERROR</span> <span style='opacity:0.67'>tracing_console:</span> This is an error!
+<span style='opacity:0.67'>2024-12-01T07:56:14.778568Z</span> <span style='color:var(--yellow,#a60)'> WARN</span> <span style='opacity:0.67'>tracing_console:</span> This is a warning.
+<span style='opacity:0.67'>2024-12-01T07:56:14.778596Z</span> <span style='color:var(--green,#0a0)'> INFO</span> <span style='opacity:0.67'>tracing_console:</span> This is an informational message.
+</code></pre>
+<p>To configure a more verbose default level, set the <code>RUST_LOG</code> environment variable:</p>
+<pre><code class="language-shell">RUST_LOG=trace cargo run --example log-debug
+</code></pre>
+<p>Cargo prints these following extra lines in addition to the ones above:</p>
+<pre class="terminal"><code><span style='opacity:0.67'>2024-12-01T07:56:14.778613Z</span> <span style='color:var(--blue,#00a)'>DEBUG</span> <span style='opacity:0.67'>tracing_console:</span> This is a debug message.
+<span style='opacity:0.67'>2024-12-01T07:56:14.778640Z</span> <span style='color:var(--magenta,#a0a)'>TRACE</span> <span style='opacity:0.67'>tracing_console:</span> This is a trace message.
+</code></pre>
 <!--
 Links, in a few categories. Follow the existing structure.
 Keep lines sorted.
@@ -192,10 +218,13 @@ Keep lines sorted.
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../web/clients/download.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../development_tools/debugging/config_log.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="../../development_tools/versioning.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -203,10 +232,13 @@ Keep lines sorted.
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../web/clients/download.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../development_tools/debugging/config_log.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="../../development_tools/versioning.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
