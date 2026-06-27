@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Handle Error Variants - Rust Cookbook</title>
+        <title>Images - Rust Cookbook</title>
 
 
         <!-- Custom HTML head -->
@@ -147,7 +147,7 @@
                         <a href="https://github.com/rust-lang-nursery/rust-cookbook" title="Git repository" aria-label="Git repository">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
-                        <a href="https://github.com/rust-lang-nursery/rust-cookbook/edit/master/src/errors/handle.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                        <a href="https://github.com/rust-lang-nursery/rust-cookbook/edit/master/src/multimedia/image.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
                             <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
                         </a>
 
@@ -181,85 +181,96 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h1>
-<h2 id="handle-errors-correctly-in-main"><a class="header" href="#handle-errors-correctly-in-main">Handle errors correctly in main</a></h2>
-<p><a href="https://docs.rs/anyhow/"><img src="https://img.shields.io/crates/v/anyhow.svg?label=anyhow" alt="anyhow-badge"></a> <a href="https://crates.io/categories/rust-patterns"><img src="https://img.shields.io/badge/rust_patterns--x.svg?style=social" alt="cat-rust-patterns-badge"></a>
-<a href="https://docs.rs/thiserror/"><img src="https://img.shields.io/crates/v/thiserror.svg?label=thiserror" alt="thiserror-badge"></a> <a href="https://crates.io/categories/rust-patterns"><img src="https://img.shields.io/badge/rust_patterns--x.svg?style=social" alt="cat-rust-patterns-badge"></a>
-<a href="https://docs.rs/error-chain/"><img src="https://img.shields.io/crates/v/error-chain.svg?label=error-chain" alt="error-chain-badge"></a> <a href="https://crates.io/categories/rust-patterns"><img src="https://img.shields.io/badge/rust_patterns--x.svg?style=social" alt="cat-rust-patterns-badge"></a></p>
-<h1 id="error-strategies-2024"><a class="header" href="#error-strategies-2024">Error Strategies (2024)</a></h1>
-<p>As recommended in Rust by Example, <a href="https://doc.rust-lang.org/rust-by-example/error/multiple_error_types/boxing_errors.html"><code>Box</code>ing errors</a> is seen as an easy
-strategy for getting started.</p>
-<pre class="playground"><code class="language-rust edition2018">use std::error::Error;
+                        <h2 id="resize-and-re-encode-an-image"><a class="header" href="#resize-and-re-encode-an-image">Resize and re-encode an image</a></h2>
+<p><a href="https://docs.rs/image/"><img src="https://img.shields.io/crates/v/image.svg?label=image" alt="image-badge"></a> <a href="https://crates.io/categories/multimedia"><img src="https://img.shields.io/badge/multimedia--x.svg?style=social" alt="cat-multimedia-badge"></a></p>
+<p>Serving a small preview of a large upload means decoding the original, shrinking
+it, and writing it back in a web-friendly format. <a href="https://docs.rs/image/*/image/fn.open.html"><code>image::open</code></a> reads the file
+and infers the format from its contents. <a href="https://docs.rs/image/*/image/enum.DynamicImage.html#method.resize"><code>DynamicImage::resize</code></a> scales the
+image to fit a bounding box while preserving its aspect ratio. Its last argument
+is the resampling <a href="https://docs.rs/image/*/image/imageops/enum.FilterType.html"><code>FilterType</code></a>: <a href="https://docs.rs/image/*/image/imageops/enum.FilterType.html#variant.Lanczos3"><code>Lanczos3</code></a> gives the best quality, while
+<a href="https://docs.rs/image/*/image/imageops/enum.FilterType.html#variant.Nearest"><code>Nearest</code></a>, <a href="https://docs.rs/image/*/image/imageops/enum.FilterType.html#variant.Triangle"><code>Triangle</code></a>, <a href="https://docs.rs/image/*/image/imageops/enum.FilterType.html#variant.CatmullRom"><code>CatmullRom</code></a>, and <a href="https://docs.rs/image/*/image/imageops/enum.FilterType.html#variant.Gaussian"><code>Gaussian</code></a> trade quality for
+speed. <a href="https://docs.rs/image/*/image/enum.DynamicImage.html#method.save"><code>DynamicImage::save</code></a> selects the encoder from the output extension, so
+writing to <code>thumbnail.jpg</code> produces a JPEG.</p>
+<pre class="playground"><code class="language-rust no_run edition2018">use std::path::Path;
 
-fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-    // Example of boxing errors
-    let result: Result&lt;(), Box&lt;dyn Error&gt;&gt; = Ok(());
-    result
-}</code></pre>
-<p>To understand what kind of error handling may be required study <a href="https://mmapped.blog/posts/12-rust-error-handling">Designing
-error types in Rust</a> and consider <a href="https://docs.rs/thiserror/latest/thiserror/"><code>thiserror</code></a> for libraries or <a href="https://docs.rs/anyhow/latest/anyhow/"><code>anyhow</code></a> as
-a maintained error aggregation option.</p>
-<pre class="playground"><code class="language-rust edition2018">use thiserror::Error;
+use anyhow::Result;
+use image::DynamicImage;
+use image::imageops::FilterType;
 
-#[derive(Error,Debug)]
-pub enum MultiError {
-  #[error("🦀 got {0}")]
-  ErrorClass(String),
+fn thumbnail(source: &amp;Path, max_edge: u32) -&gt; Result&lt;DynamicImage&gt; {
+    let image = image::open(source)?;
+    Ok(image.resize(max_edge, max_edge, FilterType::Lanczos3))
 }
 
-fn main() -&gt; Result&lt;(), MultiError&gt; {
-    // Example of using thiserror
+fn main() -&gt; Result&lt;()&gt; {
+    let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("assets/sample.png");
+    let thumb = thumbnail(&amp;source, 64)?;
+
+    let out = std::env::temp_dir().join("thumbnail.jpg");
+    thumb.save(&amp;out)?;
+
+    println!(
+        "wrote {}x{} thumbnail to {}",
+        thumb.width(),
+        thumb.height(),
+        out.display()
+    );
     Ok(())
 }</code></pre>
-<p>Application authors can compose enums using <code>anyhow</code> can import the <code>Result</code>
-type from the crate to provide auto-<code>Box</code>ing behavior</p>
-<pre class="playground"><code class="language-rust edition2018 should_panic">use anyhow::Result;
+<h2 id="detect-an-image-format-from-its-bytes"><a class="header" href="#detect-an-image-format-from-its-bytes">Detect an image format from its bytes</a></h2>
+<p><a href="https://docs.rs/image/"><img src="https://img.shields.io/crates/v/image.svg?label=image" alt="image-badge"></a> <a href="https://crates.io/categories/multimedia"><img src="https://img.shields.io/badge/multimedia--x.svg?style=social" alt="cat-multimedia-badge"></a></p>
+<p>An upload may arrive with a misleading extension or none at all. <a href="https://docs.rs/image/*/image/fn.guess_format.html"><code>guess_format</code></a>
+reads the leading magic bytes and returns the matching <a href="https://docs.rs/image/*/image/enum.ImageFormat.html"><code>ImageFormat</code></a>, which in
+turn gives the MIME type through <a href="https://docs.rs/image/*/image/enum.ImageFormat.html#method.to_mime_type"><code>ImageFormat::to_mime_type</code></a>. Only the header is
+examined, so a short prefix of the file is enough.</p>
+<pre class="playground"><code class="language-rust no_run edition2018">use std::path::Path;
 
-fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-   let my_string = "yellow".to_string();  
-   let _my_int = my_string.parse::&lt;i32&gt;()?;
-   Ok(())
+use anyhow::Result;
+use image::ImageFormat;
+
+fn detect(bytes: &amp;[u8]) -&gt; Result&lt;ImageFormat&gt; {
+    Ok(image::guess_format(bytes)?)
+}
+
+fn main() -&gt; Result&lt;()&gt; {
+    let path = Path::new(env!("CARGO_MANIFEST_DIR")).join("assets/sample.png");
+    let bytes = std::fs::read(&amp;path)?;
+
+    let format = detect(&amp;bytes)?;
+    println!("{:?} ({})", format, format.to_mime_type());
+    Ok(())
 }</code></pre>
-<h1 id="error-chain-2015-2018"><a class="header" href="#error-chain-2015-2018">Error Chain (2015-2018)</a></h1>
-<p>Handles error that occur when trying to open a file that does not
-exist. It is achieved by using <a href="https://docs.rs/error-chain/">error-chain</a>, a library that takes
-care of a lot of boilerplate code needed in order to <a href="https://doc.rust-lang.org/book/second-edition/ch09-00-error-handling.html">handle errors in Rust</a>.</p>
-<p><code>Io(std::io::Error)</code> inside <a href="https://docs.rs/error-chain/*/error_chain/#foreign-links"><code>foreign_links</code></a> allows automatic
-conversion from <a href="https://doc.rust-lang.org/std/io/struct.Error.html"><code>std::io::Error</code></a> into <a href="https://docs.rs/error-chain/*/error_chain/macro.error_chain.html"><code>error_chain!</code></a> defined type
-implementing the <a href="https://doc.rust-lang.org/std/error/trait.Error.html"><code>Error</code></a> trait.</p>
-<p>The below recipe will tell how long the system has been running by
-opening the Unix file <code>/proc/uptime</code> and parse the content to get the
-first number. Returns uptime unless there is an error.</p>
-<p>Other recipes in this book will hide the <a href="https://docs.rs/error-chain/">error-chain</a> boilerplate, and can be
-seen by expanding the code with the ⤢ button.</p>
-<pre><code class="language-rust edition2018 ignore">use error_chain::error_chain;
+<h2 id="inspect-image-exif-metadata"><a class="header" href="#inspect-image-exif-metadata">Inspect image EXIF metadata</a></h2>
+<p><a href="https://docs.rs/kamadak-exif/"><img src="https://img.shields.io/crates/v/kamadak-exif.svg?label=kamadak-exif" alt="kamadak-exif-badge"></a> <a href="https://crates.io/categories/multimedia"><img src="https://img.shields.io/badge/multimedia--x.svg?style=social" alt="cat-multimedia-badge"></a></p>
+<p>A photograph carries EXIF metadata describing the camera and the capture. The
+<a href="https://docs.rs/kamadak-exif/"><code>kamadak-exif</code></a> crate, imported as <code>exif</code>, reads it without
+decoding the pixels. <a href="https://docs.rs/kamadak-exif/*/exif/struct.Reader.html#method.read_from_container"><code>Reader::read_from_container</code></a> parses the EXIF block from a
+buffered reader. EXIF splits its fields across directories: the primary image and
+an optional embedded thumbnail. <a href="https://docs.rs/kamadak-exif/*/exif/struct.Exif.html#method.get_field"><code>Exif::get_field</code></a> looks up a <a href="https://docs.rs/kamadak-exif/*/exif/struct.Tag.html"><code>Tag</code></a> in one of
+them, chosen with <a href="https://docs.rs/kamadak-exif/*/exif/struct.In.html"><code>In</code></a>, here <a href="https://docs.rs/kamadak-exif/*/exif/struct.In.html#associatedconstant.PRIMARY"><code>In::PRIMARY</code></a> for the primary image.
+<a href="https://docs.rs/kamadak-exif/*/exif/struct.Field.html#method.display_value"><code>Field::display_value</code></a> renders the value.</p>
+<pre class="playground"><code class="language-rust no_run edition2018">use std::fs::File;
+use std::io::BufReader;
+use std::path::Path;
 
-use std::fs::File;
-use std::io::Read;
+use anyhow::Result;
+use exif::{Exif, In, Reader, Tag};
 
-error_chain!{
-    foreign_links {
-        Io(std::io::Error);
-        ParseInt(::std::num::ParseIntError);
+fn read_exif(path: &amp;Path) -&gt; Result&lt;Exif&gt; {
+    let mut reader = BufReader::new(File::open(path)?);
+    Ok(Reader::new().read_from_container(&amp;mut reader)?)
+}
+
+fn main() -&gt; Result&lt;()&gt; {
+    let path = Path::new(env!("CARGO_MANIFEST_DIR")).join("assets/photo.jpg");
+    let exif = read_exif(&amp;path)?;
+
+    for tag in [Tag::Make, Tag::Model, Tag::Software, Tag::DateTime, Tag::Orientation] {
+        if let Some(field) = exif.get_field(tag, In::PRIMARY) {
+            println!("{}: {}", tag, field.display_value().with_unit(&amp;exif));
+        }
     }
-}
-
-fn read_uptime() -&gt; Result&lt;u64&gt; {
-    let mut uptime = String::new();
-    File::open("/proc/uptime")?.read_to_string(&amp;mut uptime)?;
-
-    Ok(uptime
-        .split('.')
-        .next()
-        .ok_or("Cannot parse uptime data")?
-        .parse()?)
-}
-
-fn main() {
-    match read_uptime() {
-        Ok(uptime) =&gt; println!("uptime: {} seconds", uptime),
-        Err(err) =&gt; eprintln!("error: {}", err),
-    };
+    Ok(())
 }</code></pre>
 <!--
 Links, in a few categories. Follow the existing structure.
@@ -272,11 +283,11 @@ Keep lines sorted.
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../errors.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../multimedia.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../errors/combinators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../multimedia/audio.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -286,11 +297,11 @@ Keep lines sorted.
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../errors.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../multimedia.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../errors/combinators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../multimedia/audio.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
