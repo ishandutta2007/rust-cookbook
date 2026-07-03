@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b86bcd99.js";
+            window.path_to_searchindex_js = "searchindex-be71b651.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-4611ab2a.js"></script>
@@ -5749,22 +5749,11 @@ Using the <a href="https://docs.rs/cc"><strong>cc</strong></a> crate, a static l
 <p>Since the bundled C is very simple, only a single source file needs to be passed to <a href="https://docs.rs/cc/*/cc/struct.Build.html"><code>cc::Build</code></a>.
 For more complex build requirements, <a href="https://docs.rs/cc/*/cc/struct.Build.html"><code>cc::Build</code></a> offers a full suite of builder methods for specifying
 <a href="https://docs.rs/cc/*/cc/struct.Build.html#method.include"><code>include</code></a> paths and extra compiler <a href="https://docs.rs/cc/*/cc/struct.Build.html#method.flag"><code>flag</code></a>s.</p>
-<p><code>Cargo.toml</code></p>
-<pre><code class="language-toml">[package]
-...
-build = "build.rs"
-
-[build-dependencies]
-cc = "1"
-
-[dependencies]
-anyhow = "1"
-</code></pre>
 <p><code>build.rs</code></p>
-<pre class="playground"><code class="language-rust edition2018 no_run">fn main() {
+<pre class="playground"><code class="language-rust edition2018">fn main() {
     cc::Build::new()
         .file("src/hello.c")
-        .compile("hello");   // outputs `libhello.a`
+        .compile("hello"); // outputs `libhello.a`
 }</code></pre>
 <p><code>src/hello.c</code></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
@@ -5779,7 +5768,7 @@ void greet(const char* name) {
 }
 </code></pre>
 <p><code>src/main.rs</code></p>
-<pre><code class="language-rust edition2018 ignore">use anyhow::Result;
+<pre class="playground"><code class="language-rust edition2018">use anyhow::Result;
 use std::ffi::CString;
 use std::os::raw::c_char;
 
@@ -5792,7 +5781,7 @@ fn prompt(s: &amp;str) -&gt; Result&lt;String&gt; {
     Ok(input.trim().to_string())
 }
 
-extern {
+unsafe extern "C" {
     fn hello();
     fn greet(name: *const c_char);
 }
@@ -5807,20 +5796,12 @@ fn main() -&gt; Result&lt;()&gt; {
 <h2 id="compile-and-link-statically-to-a-bundled-c-library-1"><a class="header" href="#compile-and-link-statically-to-a-bundled-c-library-1">Compile and link statically to a bundled C++ library</a></h2>
 <p><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
 <p>Linking a bundled C++ library is very similar to linking a bundled C library. The two core differences when compiling and statically linking a bundled C++ library are specifying a C++ compiler via the builder method <a href="https://docs.rs/cc/*/cc/struct.Build.html#method.cpp"><code>cpp(true)</code></a> and preventing name mangling by the C++ compiler by adding the <code>extern "C"</code> section at the top of our C++ source file.</p>
-<p><code>Cargo.toml</code></p>
-<pre><code class="language-toml">[package]
-...
-build = "build.rs"
-
-[build-dependencies]
-cc = "1"
-</code></pre>
 <p><code>build.rs</code></p>
-<pre class="playground"><code class="language-rust edition2018 no_run">fn main() {
+<pre class="playground"><code class="language-rust edition2018">fn main() {
     cc::Build::new()
         .cpp(true)
         .file("src/foo.cpp")
-        .compile("foo");   
+        .compile("foo");
 }</code></pre>
 <p><code>src/foo.cpp</code></p>
 <pre><code class="language-cpp">extern "C" {
@@ -5832,14 +5813,14 @@ int multiply(int x, int y) {
 }
 </code></pre>
 <p><code>src/main.rs</code></p>
-<pre><code class="language-rust edition2018 ignore">extern {
-    fn multiply(x : i32, y : i32) -&gt; i32;
+<pre class="playground"><code class="language-rust edition2018">unsafe extern "C" {
+    fn multiply(x: i32, y: i32) -&gt; i32;
 }
 
-fn main(){
+fn main() {
     unsafe {
-        println!("{}", multiply(5,7));
-    }   
+        println!("{}", multiply(5, 7));
+    }
 }</code></pre>
 <h2 id="compile-a-c-library-while-setting-custom-defines"><a class="header" href="#compile-a-c-library-while-setting-custom-defines">Compile a C library while setting custom defines</a></h2>
 <p><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
@@ -5848,17 +5829,8 @@ The method takes an <a href="https://doc.rust-lang.org/std/option/enum.Option.ht
 as well as <code>#define WELCOME</code> (pass <code>None</code> as the value for a value-less define). This recipe builds
 a bundled C file with dynamic defines set in <code>build.rs</code> and prints “<strong>Welcome to foo - version 1.0.2</strong>”
 when run. Cargo sets some <a href="https://doc.rust-lang.org/cargo/reference/environment-variables.html">environment variables</a> which may be useful for some custom defines.</p>
-<p><code>Cargo.toml</code></p>
-<pre><code class="language-toml">[package]
-...
-version = "1.0.2"
-build = "build.rs"
-
-[build-dependencies]
-cc = "1"
-</code></pre>
 <p><code>build.rs</code></p>
-<pre class="playground"><code class="language-rust edition2018 no_run">fn main() {
+<pre class="playground"><code class="language-rust edition2018">fn main() {
     cc::Build::new()
         .define("APP_NAME", "\"foo\"")
         .define("VERSION", format!("\"{}\"", env!("CARGO_PKG_VERSION")).as_str())
@@ -5877,14 +5849,14 @@ void print_app_info() {
 }
 </code></pre>
 <p><code>src/main.rs</code></p>
-<pre><code class="language-rust edition2018 ignore">extern {
+<pre class="playground"><code class="language-rust edition2018">unsafe extern "C" {
     fn print_app_info();
 }
 
-fn main(){
+fn main() {
     unsafe {
         print_app_info();
-    }   
+    }
 }</code></pre>
 <!--
 Links, in a few categories. Follow the existing structure.
@@ -8552,7 +8524,7 @@ Keep lines sorted.
 <p><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a> <a href="https://crates.io/categories/os"><img src="https://img.shields.io/badge/OS--x.svg?style=social" alt="cat-os-badge"></a></p>
 <p>Runs <code>git log --oneline</code> using an external <a href="https://doc.rust-lang.org/std/process/struct.Command.html"><code>Command</code></a> and inspects the <a href="https://doc.rust-lang.org/std/process/struct.Output.html"><code>Output</code></a>
 status to determine if the command was successful. The command output is captured
-as a [<code>String</code>] using [<code>String::from_utf8</code>].</p>
+as a <a href="https://doc.rust-lang.org/std/string/struct.String.html"><code>String</code></a> using <a href="https://doc.rust-lang.org/std/string/struct.String.html#method.from_utf8"><code>String::from_utf8</code></a>.</p>
 <pre class="playground"><code class="language-rust edition2018 no_run">use anyhow::{Result, anyhow};
 use std::process::Command;
 
