@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-be71b651.js";
+            window.path_to_searchindex_js = "searchindex-6ac86c7c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-4611ab2a.js"></script>
@@ -479,6 +479,7 @@ Keep lines sorted.
 <tr><td><a href="#compile-and-link-statically-to-a-bundled-c-library">Compile and link statically to a bundled C library</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
 <tr><td><a href="#compile-and-link-statically-to-a-bundled-c-library-1">Compile and link statically to a bundled C++ library</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
 <tr><td><a href="#compile-a-c-library-while-setting-custom-defines">Compile a C library while setting custom defines</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
+<tr><td><a href="#compile-and-link-dynamically-to-a-c-shared-library">Compile and link dynamically to a C++ shared library</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
 </tbody>
 </table>
 </div>
@@ -5234,6 +5235,7 @@ Keep lines sorted.
 <tr><td><a href="#compile-and-link-statically-to-a-bundled-c-library">Compile and link statically to a bundled C library</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
 <tr><td><a href="#compile-and-link-statically-to-a-bundled-c-library-1">Compile and link statically to a bundled C++ library</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
 <tr><td><a href="#compile-a-c-library-while-setting-custom-defines">Compile a C library while setting custom defines</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
+<tr><td><a href="#compile-and-link-dynamically-to-a-c-shared-library">Compile and link dynamically to a C++ shared library</a></td><td><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a></td><td><a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></td></tr>
 </tbody>
 </table>
 </div>
@@ -5739,12 +5741,12 @@ Conventionally, build-time code lives in a <strong>build.rs</strong> file and is
 Common use cases include rust code generation and compilation of bundled C/C++/asm code.
 See crates.io’s <a href="http://doc.crates.io/build-script.html">documentation on the matter</a> for more information.</p>
 <h2 id="compile-and-link-statically-to-a-bundled-c-library"><a class="header" href="#compile-and-link-statically-to-a-bundled-c-library">Compile and link statically to a bundled C library</a></h2>
-<p><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
-<p>To accommodate scenarios where additional C, C++, or assembly is required in a project, the <a href="https://docs.rs/cc"><strong>cc</strong></a> crate
+<p><a href="https://docs.rs/cc/latest/cc/"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
+<p>To accommodate scenarios where additional C, C++, or assembly is required in a project, the <a href="https://docs.rs/cc/latest/cc/"><strong>cc</strong></a> crate
 offers a simple api for compiling bundled C/C++/asm code into static libraries (<strong>.a</strong>) that can be statically linked to by <strong>rustc</strong>.</p>
 <p>The following recipe has some bundled C code (<strong>src/hello.c</strong>) that will be used from rust.
 Before compiling rust source code, the “build” file (<strong>build.rs</strong>) specified in <strong>Cargo.toml</strong> runs.
-Using the <a href="https://docs.rs/cc"><strong>cc</strong></a> crate, a static library file will be produced (in this case, <strong>libhello.a</strong>, see
+Using the <a href="https://docs.rs/cc/latest/cc/"><strong>cc</strong></a> crate, a static library file will be produced (in this case, <strong>libhello.a</strong>, see
 <a href="https://docs.rs/cc/*/cc/struct.Build.html#method.compile"><code>compile</code> docs</a>) which can then be used from rust by declaring the external function signatures in an <code>extern</code> block.</p>
 <p>Since the bundled C is very simple, only a single source file needs to be passed to <a href="https://docs.rs/cc/*/cc/struct.Build.html"><code>cc::Build</code></a>.
 For more complex build requirements, <a href="https://docs.rs/cc/*/cc/struct.Build.html"><code>cc::Build</code></a> offers a full suite of builder methods for specifying
@@ -5794,7 +5796,7 @@ fn main() -&gt; Result&lt;()&gt; {
     Ok(())
 }</code></pre>
 <h2 id="compile-and-link-statically-to-a-bundled-c-library-1"><a class="header" href="#compile-and-link-statically-to-a-bundled-c-library-1">Compile and link statically to a bundled C++ library</a></h2>
-<p><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
+<p><a href="https://docs.rs/cc/latest/cc/"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
 <p>Linking a bundled C++ library is very similar to linking a bundled C library. The two core differences when compiling and statically linking a bundled C++ library are specifying a C++ compiler via the builder method <a href="https://docs.rs/cc/*/cc/struct.Build.html#method.cpp"><code>cpp(true)</code></a> and preventing name mangling by the C++ compiler by adding the <code>extern "C"</code> section at the top of our C++ source file.</p>
 <p><code>build.rs</code></p>
 <pre class="playground"><code class="language-rust edition2018">fn main() {
@@ -5823,7 +5825,7 @@ fn main() {
     }
 }</code></pre>
 <h2 id="compile-a-c-library-while-setting-custom-defines"><a class="header" href="#compile-a-c-library-while-setting-custom-defines">Compile a C library while setting custom defines</a></h2>
-<p><a href="https://docs.rs/cc"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
+<p><a href="https://docs.rs/cc/latest/cc/"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
 <p>It is simple to build bundled C code with custom defines using <a href="https://docs.rs/cc/*/cc/struct.Build.html#method.define"><code>cc::Build::define</code></a>.
 The method takes an <a href="https://doc.rust-lang.org/std/option/enum.Option.html"><code>Option</code></a> value, so it is possible to create defines such as <code>#define APP_NAME "foo"</code>
 as well as <code>#define WELCOME</code> (pass <code>None</code> as the value for a value-less define). This recipe builds
@@ -5857,6 +5859,141 @@ fn main() {
     unsafe {
         print_app_info();
     }
+}</code></pre>
+<h2 id="compile-and-link-dynamically-to-a-c-shared-library"><a class="header" href="#compile-and-link-dynamically-to-a-c-shared-library">Compile and link dynamically to a C++ shared library</a></h2>
+<p><a href="https://docs.rs/cc/latest/cc/"><img src="https://img.shields.io/crates/v/cc.svg?label=cc" alt="cc-badge"></a> <a href="https://crates.io/categories/development-tools"><img src="https://img.shields.io/badge/development_tools--x.svg?style=social" alt="cat-development-tools-badge"></a></p>
+<p>For more complex scenarios, a rust project may need to integrate with a shared
+library that is dynamically linked at runtime instead of bundled into the
+binary. This is useful when embedding a system-level library that isn’t
+intended to be compiled into client applications directly, or a library that
+gets updated regularly outside the scope of your project. A mixture of build
+scripts (<code>build.rs</code>) and compiler directives teaches the compiler, and the
+final binary, how to find and link to the shared library.</p>
+<p>This example does not use the <a href="https://docs.rs/cc/latest/cc/"><code>cc</code></a> crate to compile the shared library,
+since you often don’t have access to a shared library’s source or build
+process — you’re just consuming its binary directly. For the purpose of this
+example, the shared library’s source is in <code>src/mylibrary.h</code> and
+<code>src/mylibrary.cc</code> so its API surface is visible, and a <code>Makefile</code> builds it
+the way you would outside of the rust project’s own build process, independent
+of the <a href="https://docs.rs/cc/latest/cc/"><code>cc</code></a> crate.</p>
+<p>Before compiling rust source code, the “build” file (<code>build.rs</code>) specified in
+<code>Cargo.toml</code> runs. It builds <code>libmylibrary.so</code> by invoking <code>make</code>, tells
+<strong>rustc</strong> where to find it at compile time with the
+<a href="https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-search"><code>cargo:rustc-link-search</code></a> directive (pointed at Cargo’s
+own <code>OUT_DIR</code>, rather than a fixed path relative to the crate root), and
+enumerates the shared library dependency with the
+<a href="https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-lib"><code>cargo:rustc-link-lib</code></a> directive.</p>
+<p><a href="https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-lib"><code>cargo:rustc-link-lib</code></a> also bakes dynamic dependency metadata
+into the final binary, which tells the linker the name of the library to find
+at runtime. At runtime it would normally search default system locations
+(e.g. <code>/usr/lib</code>), which won’t contain <code>libmylibrary.so</code> since it was built
+into a Cargo-managed output directory. The <a href="https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-arg"><code>cargo:rustc-link-arg</code></a>
+directive bakes a runtime search path (an “rpath”) into the binary pointing at
+that <code>OUT_DIR</code>, so the example runs without manually setting
+<code>LD_LIBRARY_PATH</code>.</p>
+<p><code>build.rs</code></p>
+<pre class="playground"><code class="language-rust edition2018">use std::env;
+use std::path::PathBuf;
+use std::process::Command;
+
+fn main() {
+    let manifest_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
+    let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+
+    // Build `libmylibrary.so` the way you would outside of a Rust project:
+    // with its own Makefile, independent of the `cc` crate.
+    let status = Command::new("make")
+        .current_dir(&amp;manifest_dir)
+        .env("OUT_DIR", &amp;out_dir)
+        .status()
+        .expect("failed to run `make`; is a C++ toolchain installed?");
+    assert!(status.success(), "failed to build libmylibrary.so");
+
+    // Tell rustc where to find `libmylibrary` at compile time...
+    println!("cargo:rustc-link-search=native={}", out_dir.display());
+    // ...and bake a runtime search path into the binary, so the dynamically
+    // linked library can be found without setting `LD_LIBRARY_PATH` by hand.
+    println!("cargo:rustc-link-arg=-Wl,-rpath,{}", out_dir.display());
+    println!("cargo:rustc-link-lib=dylib=mylibrary");
+
+    println!("cargo:rerun-if-changed=src/mylibrary.cc");
+    println!("cargo:rerun-if-changed=src/mylibrary.h");
+    println!("cargo:rerun-if-changed=Makefile");
+}</code></pre>
+<p><code>Makefile</code></p>
+<pre><code class="language-makefile">CXX = g++
+CXXFLAGS = -std=c++11 -Wall -Werror
+
+all: $(OUT_DIR)/libmylibrary.so
+
+$(OUT_DIR)/libmylibrary.so: src/mylibrary.cc src/mylibrary.h
+	# Position-independent code (`-fpic`) is required for shared libraries.
+	$(CXX) $(CXXFLAGS) -fpic -c src/mylibrary.cc -o $(OUT_DIR)/mylibrary.o
+	$(CXX) -shared -o $(OUT_DIR)/libmylibrary.so $(OUT_DIR)/mylibrary.o
+	rm $(OUT_DIR)/mylibrary.o
+</code></pre>
+<p><code>src/mylibrary.h</code></p>
+<pre><code class="language-cpp">// Use C linkage for ABI stability.
+extern "C" {
+
+int add_numbers(int a, int b);
+void greet(const char* name);
+
+}  // extern "C"
+</code></pre>
+<p><code>src/mylibrary.cc</code></p>
+<pre><code class="language-cpp">#include "mylibrary.h"
+
+#include &lt;iostream&gt;
+
+extern "C" {
+
+int add_numbers(int a, int b) {
+    return a + b;
+}
+
+void greet(const char* name) {
+    std::cout &lt;&lt; "Hello from a C++ shared library, " &lt;&lt; name &lt;&lt; "!" &lt;&lt; std::endl;
+}
+
+}  // extern "C"
+</code></pre>
+<p><code>src/main.rs</code></p>
+<pre class="playground"><code class="language-rust edition2018">use anyhow::Result;
+use std::ffi::CString;
+use std::os::raw::c_char;
+
+unsafe extern "C" {
+    fn add_numbers(a: i32, b: i32) -&gt; i32;
+    fn greet(name: *const c_char);
+}
+
+fn prompt(s: &amp;str) -&gt; Result&lt;String&gt; {
+    use std::io::Write;
+    print!("{s}");
+    std::io::stdout().flush()?;
+    let mut input = String::new();
+    std::io::stdin().read_line(&amp;mut input)?;
+    Ok(input.trim().to_string())
+}
+
+// Safe wrapper around the unsafe `add_numbers` C function.
+fn library_add_numbers(a: i32, b: i32) -&gt; i32 {
+    unsafe { add_numbers(a, b) }
+}
+
+// Safe wrapper around the unsafe `greet` C function.
+fn library_greet(name: &amp;CString) {
+    unsafe { greet(name.as_ptr()) }
+}
+
+fn main() -&gt; Result&lt;()&gt; {
+    let name = prompt("What's your name? ")?;
+    let c_name = CString::new(name)?;
+    library_greet(&amp;c_name);
+    let result = library_add_numbers(10, 12);
+    println!("Addition result: {result}");
+    Ok(())
 }</code></pre>
 <!--
 Links, in a few categories. Follow the existing structure.
