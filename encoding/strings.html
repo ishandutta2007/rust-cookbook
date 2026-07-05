@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-6ac86c7c.js";
+            window.path_to_searchindex_js = "../searchindex-d0ad6050.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-4611ab2a.js"></script>
+        <script src="../toc-83955176.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -253,6 +253,70 @@ fn main() -&gt; Result&lt;(), DecodeError&gt; {
     assert_eq!(&amp;decoded[..], &amp;original[..]);
 
     Ok(())
+}</code></pre>
+<h2 id="generate-otp-with-a-base32-set"><a class="header" href="#generate-otp-with-a-base32-set">Generate OTP with a Base32 set</a></h2>
+<p><a href="https://docs.rs/data-encoding/"><img src="https://img.shields.io/crates/v/data-encoding.svg?label=data-encoding" alt="data-encoding-badge"></a> <a href="https://crates.io/categories/encoding"><img src="https://img.shields.io/badge/encoding--x.svg?style=social" alt="cat-encoding-badge"></a></p>
+<p>The <a href="https://docs.rs/data-encoding/*/data_encoding/"><code>data_encoding</code></a> crate provides a <code>BASE32_NOPAD::encode</code> method which takes
+a <code>&amp;[u8]</code> and returns a <code>String</code> containing the base32 representation of the
+data.</p>
+<p>Similarly, a <code>BASE32_NOPAD::decode</code> method is provided which takes a <code>&amp;[u8]</code> and
+returns a <code>Vec&lt;u8&gt;</code> if the input data is successfully decoded. There is also a
+<code>BASE32_NOPAD_VISUAL::decode</code> (resp. <code>BASE32_NOPAD_NOCASE::decode</code>) method which
+accepts characters outside base32 that can easily be confused with characters
+inside base32 and understands them accordingly (resp. accepts lowercase
+characters and understands them as their uppercase version).</p>
+<p>The recipe below generates a human-readable one-time password by converting
+random bytes to base32. It then assumes the password was entered by a human with
+some visual errors. It finally makes sure the entered password decodes back to
+the initial random bytes.</p>
+<pre class="playground"><code class="language-rust edition2018">use data_encoding::{BASE32_NOPAD, BASE32_NOPAD_VISUAL, DecodeError};
+
+fn main() -&gt; Result&lt;(), DecodeError&gt; {
+    // Generate the password from random bytes.
+    let initial_entropy = rand::random::&lt;[u8; 10]&gt;(); // 80 bits of entropy
+    let shown_password = make_password(&amp;initial_entropy);
+
+    // Show the password to the user.
+    println!("{shown_password}");
+
+    // Read the password from the user (may have visual mistakes).
+    let entered_password = alter_visually(&amp;shown_password);
+    println!("{entered_password}");
+
+    // Reconstitute the random bytes (correcting the visual errors).
+    let final_entropy = read_entropy(&amp;entered_password)?;
+    assert_eq!(final_entropy, initial_entropy);
+
+    Ok(())
+}
+
+fn make_password(entropy: &amp;[u8]) -&gt; String {
+    BASE32_NOPAD.encode(entropy)
+}
+
+fn read_entropy(password: &amp;str) -&gt; Result&lt;Vec&lt;u8&gt;, DecodeError&gt; {
+    BASE32_NOPAD_VISUAL.decode(password.as_bytes())
+}
+
+fn alter_visually(input: &amp;str) -&gt; String {
+    fn alter_char(c: char) -&gt; char {
+        match c {
+            // O may be confused with 0
+            'O' if rand::random::&lt;bool&gt;() =&gt; '0',
+            // I may be confused with 1 or l
+            'I' if rand::random::&lt;bool&gt;() =&gt; {
+                if rand::random::&lt;bool&gt;() {
+                    '1'
+                } else {
+                    'l'
+                }
+            }
+            // B may be confused with 8
+            'B' if rand::random::&lt;bool&gt;() =&gt; '8',
+            _ =&gt; c,
+        }
+    }
+    input.chars().map(alter_char).collect()
 }</code></pre>
 <h2 id="encode-and-decode-base64"><a class="header" href="#encode-and-decode-base64">Encode and decode base64</a></h2>
 <p><a href="https://docs.rs/base64/"><img src="https://img.shields.io/crates/v/base64.svg?label=base64" alt="base64-badge"></a> <a href="https://crates.io/categories/encoding"><img src="https://img.shields.io/badge/encoding--x.svg?style=social" alt="cat-encoding-badge"></a></p>

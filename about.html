@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-6ac86c7c.js";
+            window.path_to_searchindex_js = "searchindex-d0ad6050.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-4611ab2a.js"></script>
+        <script src="toc-83955176.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -271,11 +271,19 @@ quality levels as it grows.</p>
 “core”, or “foundational”, crates—those crates that make up the most
 common programming tasks, and that the rest of the ecosystem builds
 off of.</p>
-<p>The cookbook is closely tied to the <a href="https://internals.rust-lang.org/t/rust-libz-blitz/5184">Rust Libz Blitz</a>, a project to
-identify, and improve the quality of such crates, and so it largely
-defers crate selection to that project. Any crates that have already
-been evaluated as part of that process are in scope for the cookbook,
-as are crates that are pending evaluation.</p>
+<p>A crate is in scope for the cookbook if it meets one of these bars:</p>
+<ul>
+<li>It is the (or a) recommendation for its problem domain on
+<a href="https://blessed.rs">blessed.rs</a>, a curated guide to which crate to reach for in a given
+situation.</li>
+<li>It ranks at or near the top of its <a href="https://crates.io">crates.io</a> category, sorted by
+downloads. Category rank matters more than raw download count, since
+aggregate downloads favor old, low-level crates (like <code>libc</code> or
+<code>syn</code>) that aren’t cookbook material on their own.</li>
+</ul>
+<p>Either way, the crate should also be actively maintained (a release or
+commit within the last year), have <a href="https://docs.rs">docs.rs</a> documentation, and use a
+standard OSI license.</p>
 <!--
 Links, in a few categories. Follow the existing structure.
 Keep lines sorted.

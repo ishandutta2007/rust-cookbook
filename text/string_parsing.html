@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-6ac86c7c.js";
+            window.path_to_searchindex_js = "../searchindex-d0ad6050.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-4611ab2a.js"></script>
+        <script src="../toc-83955176.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -246,6 +246,60 @@ fn main() {
             b: 104
         }
     );
+}</code></pre>
+<h2 id="implement-debug-display-and-hash-for-a-custom-type"><a class="header" href="#implement-debug-display-and-hash-for-a-custom-type">Implement Debug, Display, and Hash for a custom type</a></h2>
+<p><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a> <a href="https://crates.io/categories/text-processing"><img src="https://img.shields.io/badge/text_processing--x.svg?style=social" alt="cat-text-processing-badge"></a></p>
+<p>Manually implements the <a href="https://doc.rust-lang.org/std/fmt/trait.Debug.html"><code>Debug</code></a> and <a href="https://doc.rust-lang.org/std/fmt/trait.Display.html"><code>Display</code></a> traits for a custom
+struct with mixed field types, and derives <a href="https://doc.rust-lang.org/std/hash/trait.Hash.html"><code>Hash</code></a> for it. A manual
+<code>Debug</code> implementation is useful when the default output produced by
+<code>#[derive(Debug)]</code> isn’t quite what’s needed; <a href="https://doc.rust-lang.org/std/fmt/struct.Formatter.html#method.debug_struct"><code>Formatter::debug_struct</code></a>
+builds output in that same <code>Field { .. }</code> style without having to format
+the fields by hand.</p>
+<pre class="playground"><code class="language-rust edition2018">use std::collections::hash_map::DefaultHasher;
+use std::fmt;
+use std::hash::{Hash, Hasher};
+
+#[derive(Hash)]
+struct Package {
+    name: String,
+    version: (u8, u8, u8),
+    downloads: u64,
+}
+
+impl fmt::Debug for Package {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        f.debug_struct("Package")
+            .field("name", &amp;self.name)
+            .field("version", &amp;self.version)
+            .field("downloads", &amp;self.downloads)
+            .finish()
+    }
+}
+
+impl fmt::Display for Package {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        let (major, minor, patch) = self.version;
+        write!(
+            f,
+            "{} v{}.{}.{} ({} downloads)",
+            self.name, major, minor, patch, self.downloads
+        )
+    }
+}
+
+fn main() {
+    let package = Package {
+        name: "rust-cookbook".to_string(),
+        version: (1, 0, 0),
+        downloads: 42_017,
+    };
+
+    println!("Debug:   {:?}", package);
+    println!("Display: {}", package);
+
+    let mut hasher = DefaultHasher::new();
+    package.hash(&amp;mut hasher);
+    println!("Hash:    {:x}", hasher.finish());
 }</code></pre>
 <!--
 Links, in a few categories. Follow the existing structure.
