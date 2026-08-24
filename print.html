@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d0ad6050.js";
+            window.path_to_searchindex_js = "searchindex-cc59e91c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-83955176.js"></script>
@@ -423,6 +423,9 @@ Keep lines sorted.
 </thead>
 <tbody>
 <tr><td><a href="#measure-the-elapsed-time-between-two-code-sections">Measure elapsed time</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
+<tr><td><a href="#deadline-arithmetic-with-instant">Deadline arithmetic with Duration</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
+<tr><td><a href="#convert-systemtime-to-unix-timestamp">Convert SystemTime to UNIX timestamp</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
+<tr><td><a href="#benchmark-a-closure-with-instant">Benchmark a closure with Instant</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
 <tr><td><a href="#perform-checked-date-and-time-calculations">Perform checked date and time calculations</a></td><td><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></td></tr>
 <tr><td><a href="#convert-a-local-time-to-another-timezone">Convert a local time to another timezone</a></td><td><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></td></tr>
 <tr><td><a href="#examine-the-date-and-time">Examine the date and time</a></td><td><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></td></tr>
@@ -5091,6 +5094,9 @@ Keep lines sorted.
 </thead>
 <tbody>
 <tr><td><a href="#measure-the-elapsed-time-between-two-code-sections">Measure elapsed time</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
+<tr><td><a href="#deadline-arithmetic-with-instant">Deadline arithmetic with Duration</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
+<tr><td><a href="#convert-systemtime-to-unix-timestamp">Convert SystemTime to UNIX timestamp</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
+<tr><td><a href="#benchmark-a-closure-with-instant">Benchmark a closure with Instant</a></td><td><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></td></tr>
 <tr><td><a href="#perform-checked-date-and-time-calculations">Perform checked date and time calculations</a></td><td><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></td></tr>
 <tr><td><a href="#convert-a-local-time-to-another-timezone">Convert a local time to another timezone</a></td><td><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></td></tr>
 <tr><td><a href="#examine-the-date-and-time">Examine the date and time</a></td><td><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a></td><td><a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></td></tr>
@@ -5126,6 +5132,87 @@ fn main() {
     let duration = start.elapsed();
 
     println!("Time elapsed in expensive_function() is: {:?}", duration);
+}</code></pre>
+<h2 id="deadline-arithmetic-with-instant"><a class="header" href="#deadline-arithmetic-with-instant">Deadline arithmetic with <code>Instant</code></a></h2>
+<p><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a> <a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></p>
+<p>Calculates a one second <a href="https://doc.rust-lang.org/std/time/struct.Duration.html"><code>Duration</code></a>. Computes <code>deadline</code> one second from <a href="https://doc.rust-lang.org/std/time/struct.Instant.html#method.now"><code>Instant::now</code></a>.
+Sleeps for one second and compares <code>deadline</code> with <a href="https://doc.rust-lang.org/std/time/struct.Instant.html#method.now"><code>Instant::now</code></a> to check if the deadline has passed.</p>
+<pre class="playground"><code class="language-rust edition2021"><span class="boring">use std::thread;
+</span>use std::time::{Duration, Instant};
+<span class="boring">fn sleep(duration: Duration) {
+</span><span class="boring">   thread::sleep(duration);
+</span><span class="boring">}
+</span>
+fn main() {
+    let one_second = Duration::from_secs(1);
+    let deadline = Instant::now() + one_second;
+
+    sleep(Duration::from_secs(1));
+    if Instant::now() &gt; deadline {
+        println!("Deadline has passed");
+    }
+}</code></pre>
+<h2 id="convert-systemtime-to-unix-timestamp"><a class="header" href="#convert-systemtime-to-unix-timestamp">Convert <code>SystemTime</code> to Unix timestamp</a></h2>
+<p><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a> <a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></p>
+<p>Converts the current <a href="https://doc.rust-lang.org/std/time/struct.SystemTime.html"><code>SystemTime</code></a> to seconds since the Unix epoch, then computes the original time
+by adding the unix timestamp to <a href="https://doc.rust-lang.org/std/time/struct.SystemTime.html#associatedconstant.UNIX_EPOCH"><code>SystemTime::UNIX_EPOCH</code></a> constant.</p>
+<pre class="playground"><code class="language-rust edition2021">use std::time::{SystemTime, SystemTimeError};
+
+fn main() -&gt; Result&lt;(), SystemTimeError&gt; {
+    let now = SystemTime::now();
+    let since_unix_epoch = now.duration_since(SystemTime::UNIX_EPOCH)?;
+    println!("Unix timestamp: {}", since_unix_epoch.as_secs());
+
+    let from_unix_timestamp = SystemTime::UNIX_EPOCH + since_unix_epoch;
+    println!("Back to SystemTime: {:?}", from_unix_timestamp);
+
+    Ok(())
+}</code></pre>
+<h2 id="benchmark-a-closure-with-instant"><a class="header" href="#benchmark-a-closure-with-instant">Benchmark a closure with <code>Instant</code></a></h2>
+<p><a href="https://doc.rust-lang.org/std"><img src="https://img.shields.io/badge/std-1.29.1-blue.svg" alt="std-badge"></a> <a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/time--x.svg?style=social" alt="cat-time-badge"></a></p>
+<p>Initializes a <code>weights</code> vector, calculates half of its total sum into <code>half_load</code>,
+and uses <code>benchmark</code> to measure the performance of <code>subset_sum</code> which takes a slice of weights and a target value and finds a subset whose weights sum to the target.</p>
+<p><code>benchmark</code> measures the average time required to call a closure a specified number of times using <a href="https://doc.rust-lang.org/std/time/struct.Instant.html#method.now"><code>Instant::now</code></a> and <a href="https://doc.rust-lang.org/std/time/struct.Instant.html#method.elapsed"><code>Instant::elapsed</code></a>.
+It uses <a href="https://doc.rust-lang.org/std/hint/fn.black_box.html"><code>black_box</code></a> to prevent the compiler from optimizing away the closure’s computation since its return value is ignored.</p>
+<pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
+
+fn subset_sum(weights: &amp;[u64], target: u64) -&gt; Option&lt;u32&gt; {
+    for mask in 0..1u32 &lt;&lt; weights.len() {
+        let sum: u64 = weights
+            .iter()
+            .enumerate()
+            .filter(|(i, _)| mask &gt;&gt; i &amp; 1 == 1)
+            .map(|(_, weight)| weight)
+            .sum();
+
+        if sum == target {
+            return Some(mask);
+        }
+    }
+    None
+}
+
+fn benchmark&lt;F, T&gt;(runs: u32, mut f: F) -&gt; Duration
+where
+    F: FnMut() -&gt; T,
+{
+    let start = Instant::now();
+
+    for _ in 0..runs {
+        std::hint::black_box(f());
+    }
+
+    start.elapsed() / runs
+}
+
+fn main() {
+    let weights: Vec&lt;u64&gt; = (1..=18).map(|kg| kg * 2).collect();
+    let half_load = weights.iter().sum::&lt;u64&gt;() / 2;
+
+    for parcels in 12..=weights.len() {
+        let mean = benchmark(3, || subset_sum(&amp;weights[..parcels], half_load));
+        println!("{:2} parcels: {:&gt;10.2?}", parcels, mean);
+    }
 }</code></pre>
 <h2 id="perform-checked-date-and-time-calculations"><a class="header" href="#perform-checked-date-and-time-calculations">Perform checked date and time calculations</a></h2>
 <p><a href="https://docs.rs/chrono/"><img src="https://img.shields.io/crates/v/chrono.svg?label=chrono" alt="chrono-badge"></a> <a href="https://crates.io/categories/date-and-time"><img src="https://img.shields.io/badge/date_and_time--x.svg?style=social" alt="cat-date-and-time-badge"></a></p>
